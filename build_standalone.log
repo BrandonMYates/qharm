@@ -1,0 +1,10 @@
+Decompressed 8451 already-cached file(s)
+Completed successfully in 19011 ms!
+Already decompressed 8639 file(s)
+info: QHarm/LegendreBounds.lean:488:0: 'QHarm.eventually_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: QHarm/LegendreBounds.lean:489:0: 'QHarm.eventually_legVal_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: QHarm/LegendreBounds.lean:490:0: 'QHarm.eventually_legVal_sign' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: QHarm/LegendreBounds.lean:491:0: 'QHarm.eventually_abs_rem_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8669/8670] Built QHarm (9.3s)
+Build completed successfully (8670 jobs).
+=== DONE 2026-08-27T07:02:11Z ===
