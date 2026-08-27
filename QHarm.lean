@@ -12,3 +12,10 @@ import QHarm.Pade
 import QHarm.Integrality
 import QHarm.Forms
 import QHarm.Main
+import QHarm.RatSetup
+import QHarm.RatDecomp
+import QHarm.RatGrowth
+import QHarm.QLagrange
+import QHarm.RatIntegrality
+import QHarm.MainRat
+import QHarm.Reduce

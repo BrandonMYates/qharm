@@ -17,8 +17,7 @@ import QHarm.Mertens
   `|log 𝒟_n − (∑_{k≤n} φ(k))·log P| ≤ n · (P/(P−Q))²`.
 * `QHarm/Mertens.lean` — `sum_totient_div_sq_tendsto`, i.e. `(∑_{k≤n} φ(k))/n² → 3/π²`.
 
-Both are finished, `sorry`-free files, so this one has **no legitimate frontier**: every
-statement below is proved outright.
+Both are finished, `sorry`-free files, so every statement below is proved outright.
 
 ## Main results
 
@@ -29,7 +28,8 @@ statement below is proved outright.
   for every `ε > 0`, eventually `log 𝒟_n ≤ ((3/π²)·log P + ε)·n²`.
 * `QHarm.Dsharp_rpow_tendsto` — the multiplicative restatement
   `(𝒟_n : ℝ)^(1/n²) → P^(3/π²)`, matching the name of the file. Not consumed downstream,
-  but it is what the manuscript's lemma literally says, so it is recorded here.
+  but it is the multiplicative shape the growth lemma is usually quoted in, so it is
+  recorded here.
 * `QHarm.log_Dsharp_div_sq_sub_tendsto_zero` and `QHarm.abs_log_Dsharp_div_sq_le` — the two
   reusable intermediate steps (the `O(n)`-error term dies after division by `n²`, with the
   explicit rate `(P/(P−Q))²/n`).
@@ -75,7 +75,7 @@ Converging to `3/π²`, and — as `log_Dsharp_eq` says it must be — independe
   `QHarm/MainRat.lean` / `QHarm/Reduce.lean`.
 * Mertens itself, and the cyclotomic atoms: `QHarm/Mertens.lean`, `QHarm/Cyclotomic.lean`.
 * The crude integer-track clearing `∏_{k≤n}(t^k − 1)` — `QHarm/Clearing.lean`. The integer
-  track (build-notes deviation **D1**) never touches this file.
+  track (design decision **D1**) never touches this file.
 -/
 
 namespace QHarm
@@ -187,8 +187,8 @@ theorem log_Dsharp_le_eventually {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) {ε : �
 
 /-! ## The multiplicative restatement -/
 
-/-- **`𝒟_n^{1/n²} → P^{3/π²}`**, literally, as real powers. This is the form the manuscript
-states the lemma in; the log form above is the one the Lean assembly uses. Recorded so that
+/-- **`𝒟_n^{1/n²} → P^{3/π²}`**, literally, as real powers. This is the shape the growth
+lemma is usually quoted in; the log form above is the one the Lean assembly uses. Recorded so that
 the file's headline claim is present as a theorem and not only as a docstring. -/
 theorem Dsharp_rpow_tendsto {P Q : ℤ} (hQ : 0 < Q) (hPQ : Q < P) :
     Tendsto (fun n : ℕ => (((Dsharp P Q n : ℤ) : ℝ)) ^ ((1 : ℝ) / (n : ℝ) ^ 2))

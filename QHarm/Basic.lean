@@ -3,7 +3,7 @@ import Mathlib
 /-!
 # `QHarm.Basic` — the q-harmonic (Lambert) series and the irrationality criterion
 
-**Consumes.** Nothing from the `QHarm` campaign. Stock Mathlib only. This is the
+**Consumes.** Nothing from the rest of `QHarm`. Stock Mathlib only. This is the
 root of the `QHarm` import DAG.
 
 **Main results.**
@@ -98,7 +98,7 @@ set_option linter.unusedVariables false in
 because all the analysis is done over `ℕ`.
 
 (The reindexing is in fact unconditional; `ht` is kept in the signature because it is
-part of the campaign interface and every call site has it to hand.) -/
+part of the library's standing interface and every call site has it to hand.) -/
 theorem S_eq_tsum_nat {t : ℝ} (ht : 1 < t) :
     S t = ∑' n : ℕ, 1 / (t ^ (n + 1) - 1) := by
   rw [S, ← Equiv.tsum_eq Equiv.pnatEquivNat.symm (fun n : ℕ+ => 1 / (t ^ (n : ℕ) - 1))]

@@ -4,8 +4,7 @@ import Mathlib
 # Gaussian (`q`-)binomial coefficients
 
 **Consumes.** Nothing from `QHarm`; Mathlib only. This file is a root of the `QHarm`
-dependency graph, so it has *no* legitimate frontier: every statement below is proved
-outright.
+dependency graph, so every statement below is proved outright.
 
 **Main results.**
 

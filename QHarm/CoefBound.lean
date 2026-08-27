@@ -12,8 +12,7 @@ import QHarm.Legendre
 * `QHarm/Legendre.lean` — `legCoef`, `legG`, `legGamma` (definitions).
 * `QHarm/QBinom.lean` — `gauss`, `gaussConst`, `gauss_pos`, `gauss_le_const_mul_pow`.
 
-Nothing else. Every statement below is proved outright; there are **no frontiers** in this
-file.
+Nothing else. Every statement below is proved outright.
 
 ## Main results
 
@@ -38,7 +37,7 @@ All bounds are deliberately lossy and every exponent is a natural number — no 
   geometric series through `abs_latVal_le`.
 * `sum_abs_latVal_le` — **Cauchy–Schwarz**: given any bound `h` on the weighted square sum,
   `∑'_k (t⁻¹)^k |P_n(q^k)| ≤ √((1 - t⁻¹)⁻¹) * √h`. The squared-norm bound is taken as a
-  hypothesis; it is owned by `QHarm/Orthogonality.lean`.
+  hypothesis; it is supplied by `QHarm/Orthogonality.lean`.
 
 ## Honesty note on the exponent in `abs_latVal_le`
 
@@ -160,7 +159,7 @@ theorem abs_legCoef_le_aux {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n) :
   rw [pow_add]
   ring
 
-/-- The bound in the shape requested by the assembly file. Lossy on purpose. -/
+/-- The bound in the shape the assembly consumes. Lossy on purpose. -/
 theorem abs_legCoef_le {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n) :
     |legCoef t n j| ≤ gaussConst t ^ 2 * t ^ (2 * n * j) := by
   have ht0 : (0 : ℝ) < t := lt_trans zero_lt_one ht
@@ -188,7 +187,7 @@ theorem abs_legGamma_le_gammaExp {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n
     _ = gaussConst t ^ 2 * t ^ gammaExp n j := by
         field_simp
 
-/-- The bound in the shape requested by the assembly file. -/
+/-- The bound in the shape the assembly consumes. -/
 theorem abs_legGamma_le {t : ℝ} (ht : 1 < t) {n j : ℕ} (h : j ≤ n) :
     |legGamma t n j| ≤ gaussConst t ^ 2 * t ^ (n * j) := by
   have hC : 0 ≤ gaussConst t ^ 2 := by positivity
@@ -277,7 +276,7 @@ theorem summable_weight_sq_latVal {t : ℝ} (ht : 1 < t) (n : ℕ) :
 /-! ### Cauchy–Schwarz against the squared norm
 
 This is the step the final assembly actually consumes. The squared-norm bound `h` is a
-hypothesis: it is owned by `QHarm/Orthogonality.lean` (the `m = n` evaluation of the same
+hypothesis: it is supplied by `QHarm/Orthogonality.lean` (the `m = n` evaluation of the same
 Lagrange identity), and measured to be `≈ t^{-n}`, whence this lemma delivers `≈ t^{-n/2}`. -/
 
 theorem sum_abs_latVal_le {t : ℝ} (ht : 1 < t) (n : ℕ) {h : ℝ}

@@ -12,7 +12,7 @@ import QHarm.Legendre
 * `QHarm/Legendre.lean` — `legCoef`, `legG`, `legGamma`;
 * `QHarm/QBinom.lean` — `gauss` and its definition as a product of `(t^a - 1)` quotients.
 
-## Method (campaign deviation D3)
+## Method (design decision D3)
 
 No `₃φ₂`, no q-Saalschütz.  Fix `t > 1`, put `q = t⁻¹` and take the `n+1` distinct nodes
 `y j = q^j`, `j = 0..n`.  Lagrange interpolation of the degree-`n` polynomial

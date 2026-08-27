@@ -15,11 +15,11 @@ import QHarm.Clearing
 * `QHarm/Clearing.lean` — `Dz`, `Dr`, `Dr_eq_Dz`, `sub_one_dvd_Dz`.
 * `QHarm/CoefBound.lean` — only `two_mul_choose_two_add`, a `Nat` bookkeeping lemma.
 
-Every statement below is proved outright; there are **no frontiers** in this file.
+Every statement below is proved outright.
 
 ## The clearing factor used here
 
-Campaign deviation **D1** says the integer track needs no cyclotomic clearing. It needs one
+Design decision **D1** says the integer track needs no cyclotomic clearing. It needs one
 thing beyond `D_n = ∏_{k=1}^n (t^k − 1)`, though: an extra power of `t`. Write
 
     Mexp n = n(n-1)/2 = C(n,2).

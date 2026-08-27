@@ -13,7 +13,7 @@ identity to be proved is
 
     P_n(z)·f(z) − Q_n(z) = ∑_{k≥0} q^k · P_n(q^k) / (z − q^k).
 
-Because of campaign deviation **D5**, `QHarm/Legendre.lean` *defines* `Q_n` as the expanded
+Because of design decision **D5**, `QHarm/Legendre.lean` *defines* `Q_n` as the expanded
 form of `∑_k q^k (P_n(z) − P_n(q^k))/(z − q^k)`, so (22) is an add-and-subtract rather than a
 q-series theorem. The two pieces of work are therefore
 
@@ -88,7 +88,7 @@ noncomputable def rem (t : ℝ) (n : ℕ) : ℝ :=
 
 Everything is dominated by a geometric series: the numerators carry a factor `q^k` and the
 reciprocal denominators are bounded uniformly in `k`. The bound is deliberately crude — the
-campaign has `≈ n²` powers of `t` of slack. -/
+construction has `≈ n²` powers of `t` of slack. -/
 
 /-- A uniform-in-`k` bound for `|(t^n − q^k)⁻¹|`. At `n = 0, k = 0` the denominator really is
 zero, but then `(0 : ℝ)⁻¹ = 0` and the bound is trivially true; that is the only reason this

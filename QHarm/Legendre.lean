@@ -90,7 +90,7 @@ noncomputable def legGamma (t : ℝ) (n j : ℕ) : ℝ :=
 
 /-- `Q_n(t^n | 1/t)`, the associated function of the second kind.
 
-**Campaign deviation D5.** Van Assche's equation (25) gives `Q_n` as an explicit double sum
+**Design decision D5.** Van Assche's equation (25) gives `Q_n` as an explicit double sum
 over Gaussian binomials and q-Pochhammers. We do not use it. `Q_n` is defined instead by
 its defining property,
 
@@ -112,8 +112,7 @@ noncomputable def legQval (t : ℝ) (n : ℕ) : ℝ :=
   ∑ j ∈ Finset.range (n + 1), legGamma t n j *
     ∑ i ∈ Finset.range j, (t ^ n) ^ i * (t ^ (j - i) / (t ^ (j - i) - 1))
 
-/-- `P_n` at the lattice point `q^k`, `q = t⁻¹`. Lifted here at
-integration time: `QHarm/Pade.lean` and `QHarm/CoefBound.lean` were built in parallel and
+/-- `P_n` at the lattice point `q^k`, `q = t⁻¹`. Lifted here at integration time: `QHarm/Pade.lean` and `QHarm/CoefBound.lean` were built in parallel and
 each defined this identically, which collides on import. -/
 noncomputable def latVal (t : ℝ) (n k : ℕ) : ℝ := legG t n ((t⁻¹) ^ k * (t ^ n)⁻¹)
 

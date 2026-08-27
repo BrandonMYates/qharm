@@ -13,7 +13,7 @@ import QHarm.Integrality
 
 The three results `QHarm/Main.lean` consumes from this file: Van Assche's equation (34)
 (`sumsq`), its strict positivity (`sumsq_pos`, which is the whole of "nonvanishing" — see
-the internal build notes deviation **D2**), and the size bound `|clr_n · R_n| → 0` (`clr_mul_rem_tendsto_zero`).
+design decision **D2**), and the size bound `|clr_n · R_n| → 0` (`clr_mul_rem_tendsto_zero`).
 
 ## Consumes
 
@@ -26,9 +26,9 @@ the internal build notes deviation **D2**), and the size bound `|clr_n · R_n| �
   (the squared norm, exactly);
 * `QHarm/Integrality.lean` — `Mexp` and `two_mul_Mexp_add` (the extra clearing exponent).
 
-**There are no frontiers in this file.** Every `sorry`-free dependency listed above was on
-disk and building when this file was written, so the two frontiers originally budgeted here
-(`orth_tsum` and an `L`-bound) are both discharged by real theorems.
+Every `sorry`-free dependency listed above was already built when this file was written, so
+the two results originally budgeted as placeholders here (`orth_tsum` and an `L`-bound) are
+both discharged by real theorems.
 
 ## Main results
 
@@ -53,7 +53,7 @@ disk and building when this file was written, so the two frontiers originally bu
 
 ## Why the geometric expansion here is finite
 
-the internal build notes's sketch expands `1/(t^n − q^k) = t^{-n} ∑_{r≥0} (q^k t^{-n})^r` and swaps a
+The original sketch expands `1/(t^n − q^k) = t^{-n} ∑_{r≥0} (q^k t^{-n})^r` and swaps a
 *double* series, which needs an absolute-convergence interchange on `ℕ × ℕ`. That is not
 done here. Instead the expansion is truncated exactly:
 
@@ -73,7 +73,7 @@ whole `t^{-n²}` by itself. This is `split_term` → `rem_eq_tail` → `abs_rem_
 * the clearing factor `D_n` and its size — `QHarm/Clearing.lean`;
 * the final assembly into `master_int` — `QHarm/Main.lean`;
 * the general rational-base track (`Cyclotomic`/`Mertens`/`Growth`), not needed for the
-  integer case (the internal build notes D1).
+  integer case (design decision D1).
 -/
 
 namespace QHarm
@@ -124,8 +124,8 @@ end Elementary
 `QHarm/Orthogonality.lean` evaluates the squared norm exactly,
 `h_n = ∑_k q^k P_n(q^k)² = t^{n+1}/(t^{2n+1} − 1)`. Bounding it by `(1 − q)⁻¹ = t/(t−1)` and
 feeding that into `QHarm/CoefBound.lean`'s Cauchy–Schwarz gives `L_n ≤ (1 − q)⁻¹` uniformly
-in `n`. The truth is `≈ t^{-n/2}`, so this is `t^{n/2}` of slack — the campaign is nowhere
-near tight here (the internal build notes, "Verified numerics"). -/
+in `n`. The truth is `≈ t^{-n/2}`, so this is `t^{n/2}` of slack — the estimate is nowhere
+near tight here (see the verified numerics in the build notes). -/
 
 private theorem sqnorm_value {t : ℝ} (ht : 1 < t) (n : ℕ) :
     ∑' k : ℕ, (t⁻¹) ^ k * (latVal t n k) ^ 2 = t ^ (n + 1) / (t ^ (2 * n + 1) - 1) := by
@@ -560,7 +560,7 @@ theorem clr_mul_rem_tendsto_zero {t : ℝ} (ht : 1 < t) :
 
 /-! ### Interface check
 
-`QHarm/Main.lean` states its three `QHarm/Forms.lean` frontiers with exactly the signatures
+`QHarm/Main.lean` restates its three `QHarm/Forms.lean` inputs with exactly the signatures
 below. These `example`s are the machine check that what is proved above matches them
 verbatim, so the integration step is a copy of the statement and nothing else. (`clr` is
 `clrF`: the same definition over the same `Mexp`, restated because `Main.lean` cannot be

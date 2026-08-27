@@ -10,7 +10,7 @@ import Mathlib
 ## Consumes
 
 Nothing from `QHarm`; Mathlib only. This file is a root of the `QHarm` dependency graph
-and therefore has **no legitimate frontier**: every statement below is proved outright.
+so every statement below is proved outright.
 
 ## Main results
 
@@ -88,7 +88,7 @@ outside Lean, against `sympy`'s `cyclotomic_poly`, homogenised the same way:
 * The growth limit `𝒟_n^{1/n²} → P^{3/π²}` — `QHarm/Growth.lean`. This file supplies the
   `O(n)` error term it needs and nothing else; the `n²`-order main term is Mertens' job.
 * The crude integer-track clearing factor `∏_{k≤n}(t^k − 1)` — `QHarm/Clearing.lean`.
-  That one suffices for `irrational_int` (build-notes deviation **D1**); this file exists
+  That one suffices for the integer track (design decision **D1**); this file exists
   precisely because it does *not* suffice at `t = 7/2`.
 * Anything about the q-series construction: `S t`, the little q-Legendre polynomials, the
   linear forms `A n`, `B n`, `R n`, orthogonality, or the Padé identity. This file makes no

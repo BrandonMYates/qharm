@@ -10,11 +10,11 @@ import Mathlib
 ## Consumes
 
 Nothing. This file imports only Mathlib and depends on no other `QHarm` file. It is
-completely `sorry`-free: there are no frontiers here.
+completely `sorry`-free.
 
 ## Main results
 
-Per the internal build notes deviation **D1**, the integer track (`Q = 1`, `t : ℤ`, `t ≥ 2`)
+Per design decision **D1** of the build notes, the integer track (`Q = 1`, `t : ℤ`, `t ≥ 2`)
 does not need the sharp cyclotomic clearing factor `∏_{k≤n} Φ_k(P,Q)`, because the crude
 product already clears everything and is small enough. This file owns that object.
 

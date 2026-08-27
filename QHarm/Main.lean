@@ -21,7 +21,7 @@ master theorem that `QHarm/Reduce.lean` uses to discharge
 
 `QHarm/Basic.lean` (`S`, `irrational_of_linear_forms`), `QHarm/Legendre.lean` (the little
 q-Legendre objects), `QHarm/Clearing.lean` (`Dr`, `Dz`). The remaining inputs are declared
-below as explicit frontiers with the file that owns each.
+below, each with the file that supplies it.
 
 ## Main results
 
@@ -32,9 +32,9 @@ below as explicit frontiers with the file that owns each.
 The orthogonality (`QHarm/Orthogonality.lean`), the Padé identity (`QHarm/Pade.lean`), the
 integrality of the forms (`QHarm/Integrality.lean`), the size bounds (`QHarm/CoefBound.lean`),
 and the whole general rational-base track (`Cyclotomic`/`Mertens`/`Growth`), which is not
-needed for the integer case — see the internal build notes deviation D1.
+needed for the integer case — see design decision D1 of the build notes.
 
-## The balance being realised here (the internal build notes, "Balance sheet")
+## The balance being realised here
 
 `|B_n S - A_n| = clr t n * |rem t n| ≤ 2 t^{-n} √(h_n/(1-q))`, with `clr t n ≤ t^{n²}` and
 `|rem t n| ≤ 2 t^{-n²-n} √(h_n/(1-q))`. Nonvanishing is separate and comes from the
@@ -50,7 +50,8 @@ noncomputable def clr (t : ℝ) (n : ℕ) : ℝ := t ^ Mexp n * Dr t n
 
 /-! ### Inputs from the component files
 
-Every frontier this file once declared is now closed. `pade` comes from `QHarm/Pade.lean`;
+Every input this file once declared as a placeholder is now closed. `pade` comes from
+`QHarm/Pade.lean`;
 `sumsq`, `sumsq_pos` and `clr_mul_rem_tendsto_zero` from `QHarm/Forms.lean`; the two
 integrality facts from `QHarm/Integrality.lean`. -/
 

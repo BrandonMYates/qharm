@@ -7,7 +7,7 @@ import QHarm.Forms
 /-!
 # `QHarm/LegendreBounds.lean` — dominant-term separation in (23), and the sharp remainder
 
-**Status note.** the internal build notes deviation **D2** deleted this file: the *integer* track
+**Status note.** Design decision **D2** deleted this file: the *integer* track
 (`irrational_int`, Erdős 1948) needs no information at all about the size of `P_n(t^n)`,
 because the lossy remainder bound `|R_n| ≤ C·t^{-n²-n}` obtained by truncating a geometric
 expansion (`QHarm/Forms.lean`'s `abs_rem_le`) already beats the crude clearing.  It is
@@ -28,8 +28,7 @@ requires a genuine **lower** bound on `|P_n(t^n)|`, which is what this file supp
 * `QHarm/Pade.lean` — `rem`, `pade_den_pos`;
 * `QHarm/Forms.lean` — `sumsq` (Van Assche (34)), `sumsq_pos`, `summable_sq`, `latVal_def`.
 
-**There are no frontiers in this file.**  Every dependency listed above is `sorry`-free and
-on disk, so every statement below is proved outright.
+Every dependency listed above is `sorry`-free, so every statement below is proved outright.
 
 ## Main results
 
@@ -58,8 +57,8 @@ on neither `n` nor `j`, so `t^n → ∞` clears it), which is all the downstream
 
 Numerically the condition is `n ≥ 8` at `t = 2`, `n ≥ 3` at `t = 3`, `n ≥ 2` at `t = 5`,
 `n ≥ 1` at `t = 7`.  The truth is far better — measured `|head|/|dominant|` is already
-`0.333` at `t = 2, n = 1` — but nothing downstream is tight (the internal build notes, "Verified
-numerics"), so no effort is spent sharpening it.
+`0.333` at `t = 2, n = 1` — but nothing downstream is tight (see the verified numerics in
+the build notes), so no effort is spent sharpening it.
 
 ## What is NOT here
 
@@ -93,9 +92,9 @@ theorem degTerm_eq_gammaExp_add (n j : ℕ) : degTerm n j = gammaExp n j + n * j
 theorem degTerm_diag (n : ℕ) : degTerm n n = n.choose 2 + n * n := by
   simp [degTerm]
 
-/-- `degTerm n n = n(3n−1)/2`, subtraction- and division-free.  This is the exponent the
-manuscript calls `C_n`, and the internal build notes records that the measured minimal integralising
-exponent equals it exactly. -/
+/-- `degTerm n n = n(3n−1)/2`, subtraction- and division-free.  This is the clearing
+exponent `C_n`, and it was measured to be exactly the minimal integralising exponent at
+every base and degree tested. -/
 theorem two_mul_degTerm_diag (n : ℕ) : 2 * degTerm n n + n = 3 * (n * n) := by
   have h := two_mul_choose_two_add n
   rw [degTerm_diag]
@@ -135,7 +134,7 @@ theorem degTerm_add_mul_le {n j : ℕ} (h : j ≤ n) :
   omega
 
 /-- The consecutive gap, for the record: `degTerm n (j+1) − degTerm n j = 2n − j − 1`, hence
-`≥ n` for every `j < n`.  (The campaign sketch said `≥ n − 1`; the sharp value on the range
+`≥ n` for every `j < n`.  (An earlier sketch said `≥ n − 1`; the sharp value on the range
 that matters is `≥ n`, and the proofs below use the stronger `degTerm_add_mul_le` form.) -/
 theorem degTerm_succ_sub {n j : ℕ} (h : j < n) :
     degTerm n j + (2 * n - j - 1) = degTerm n (j + 1) := by
@@ -434,7 +433,8 @@ theorem abs_rem_le_sharp {t : ℝ} (ht : 2 ≤ t) {n : ℕ} (hn : 4 * gaussConst
   refine le_trans hfin (le_of_eq ?_)
   field_simp
 
-/-- The assembly's requested spelling.  `QHarm/Forms.lean` also has an `abs_rem_le`, but
+/-- The spelling the rational-track assembly consumes.  `QHarm/Forms.lean` also has an
+`abs_rem_le`, but
 it is `private` there (and is the *lossy* integer-track bound `|R_n| ≤ t^{-n²}(t^n−1)⁻¹L_n`),
 so the two names do not collide. -/
 theorem abs_rem_le {t : ℝ} (ht : 2 ≤ t) {n : ℕ} (hn : 4 * gaussConst t ^ 2 ≤ t ^ n) :
